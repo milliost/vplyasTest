@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name="roles")
-public class Role implements GrantedAuthority
+public class Role
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +25,4 @@ public class Role implements GrantedAuthority
 
     @ManyToMany(mappedBy="roles")
     private List<User> users;
-    @Override
-    public String getAuthority() {
-        return name;
-    }
 }

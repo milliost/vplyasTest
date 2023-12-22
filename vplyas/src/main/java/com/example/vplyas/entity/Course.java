@@ -23,25 +23,22 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "course_id")
-    private List<Lesson> lessons = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private User user;
 
-    @Column(nullable = false)
     private Date created_at;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Course_statuses status;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String title;
 
-    @Column(nullable = false)
     private String description;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private Style style;
 
     @Column(nullable = false)
@@ -50,13 +47,11 @@ public class Course {
     @Column(nullable = false)
     private int average_lessons_duration;
 
-    @Column(nullable = false)
+
     private String cover_image_url;
 
-    @Column(nullable = false)
     private String preview_video_url;
 
-    @Column(nullable = false)
     private int price;
 
     public enum Course_statuses {

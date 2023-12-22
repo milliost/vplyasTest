@@ -13,26 +13,26 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="recommendationsLists")
+@Table(name="recommendations_lists")
 public class RecommendationsLists {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String title;
 
     @Column(nullable = false)
+    private Course.Course_statuses courseStatuses;
+
+    @Column(unique = true)
     private String description;
 
-    @Column(nullable = false)
-    private Course.Style style;
+    @Column(unique = true)//почему оно уникальное ?
+    private int coursesCount;
 
-    @Column(nullable = false)
+
+    @Column(unique = true)
     private String coverImage;
-
-    @ManyToOne
-    private Course course;
-
 }

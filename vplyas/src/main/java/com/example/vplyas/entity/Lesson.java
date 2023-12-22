@@ -20,21 +20,19 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name="course_id")
+    private Course course;
+
+    @Column(nullable = false,unique = true)
     private String title;
 
-    @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
     private int duration;
 
-    @Column(nullable = false)
-    private int order;
+    @Column(nullable = false,unique = true)
+    private int order_; //order Зарезервированное слово
 
-    @Column(nullable = false)
-    private String video_url;
-
-    @Column(nullable = false)
-    private boolean isFree;
+    private String videoUrl;
 }

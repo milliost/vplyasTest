@@ -13,18 +13,18 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="favorites")
-public class Favorites
-{
+@Table(name = "courses_RecommendationsLists")
+public class CoursesRecommendationsLists {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @ManyToOne()
-    @JoinColumn(name="user_id")
-    private User user;
+    @ManyToOne
+    @JoinColumn(name = "recommendationsLists_id")
+    RecommendationsLists recommendationsLists;
 
-    @ManyToOne()
-    @JoinColumn(name="course_id")
-    private Course course;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    Course course;
 }
