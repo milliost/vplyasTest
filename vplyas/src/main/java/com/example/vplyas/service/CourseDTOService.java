@@ -9,11 +9,11 @@ import java.util.UUID;
 
 public interface CourseDTOService {
 
-    @NonNull Optional<Course> getCourseInfo(UUID id);
+    Course getCourseInfo(UUID id);
 
     void createCourse(Course course);
 
-    void updateCourse(Course course);
+    void updateCourse(UUID id, Course updatedCourse);
 
     void deleteCourse(Course course);
 

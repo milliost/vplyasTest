@@ -2,36 +2,36 @@ package com.example.vplyas.controllers;
 
 import com.example.vplyas.entity.Course;
 import com.example.vplyas.service.CourseDTOService;
+import com.github.fge.jsonpatch.JsonPatch;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 @AllArgsConstructor
-@Controller()
+@RestController
 public class CourseController{
 
     CourseDTOService courseDTOService;
 
-    @GetMapping("/course/{code}")
-    @ResponseBody
-    public @NonNull Optional<Course> getCourseInfo(@PathVariable("code") String id){
-
-        return courseDTOService.getCourseInfo(UUID.fromString(id));
+    @GetMapping("/course/{id}")
+    public Course getCourseInfo(@PathVariable("id") UUID uuid){
+        return courseDTOService.getCourseInfo(uuid);
     }
 
-    @ResponseBody
     @GetMapping("/courses")
-    public @NonNull List<Course> getCourseCatalog(){
+    public List<Course> getCourseCatalog(){
         return courseDTOService.getCourseCatalog();
     }
-
+    @PatchMapping("/course/{id}")
+    public void UpdateCourse(@PathVariable UUID id, @RequestParam Course course) {
+        courseDTOService.updateCourse(id,course);
+    }
 
 
 }
