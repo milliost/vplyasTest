@@ -11,11 +11,11 @@ public interface CourseDTOService {
 
     Course getCourseInfo(UUID id);
 
-    void createCourse(Course course);
+    UUID createCourse(Course course);
 
     void updateCourse(UUID id, Course updatedCourse);
 
-    void deleteCourse(Course course);
+    void deleteCourse(UUID uuid);
 
     List<Course> getCourseCatalog();
 }

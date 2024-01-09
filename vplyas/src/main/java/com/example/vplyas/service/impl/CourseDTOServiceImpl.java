@@ -5,6 +5,8 @@ import com.example.vplyas.entity.Course;
 import com.example.vplyas.repository.CourseRepository;
 import com.example.vplyas.service.CourseDTOService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.UUID;
 public class CourseDTOServiceImpl implements CourseDTOService {
 
     CourseRepository courseRepository;
+    private static final Logger logger = LoggerFactory.getLogger(CourseDTOServiceImpl.class);
     @Override
     public Course getCourseInfo(UUID id) {
         return courseRepository.findById(id).orElseThrow(
@@ -22,8 +25,9 @@ public class CourseDTOServiceImpl implements CourseDTOService {
     }
 
     @Override
-    public void createCourse(Course course) {
+    public UUID createCourse(Course course) {
         courseRepository.save(course);
+        return course.getId();
     }
 
     @Override
@@ -32,6 +36,7 @@ public class CourseDTOServiceImpl implements CourseDTOService {
 
         courseToBeUpdated.setUser(updatedCourse.getUser());
         courseToBeUpdated.setStatus(updatedCourse.getStatus());
+        logger.info(updatedCourse.getStatus().toString());
         courseToBeUpdated.setTitle(updatedCourse.getTitle());
         courseToBeUpdated.setDescription(updatedCourse.getDescription());
         courseToBeUpdated.setStyle(updatedCourse.getStyle());
@@ -42,12 +47,13 @@ public class CourseDTOServiceImpl implements CourseDTOService {
         courseToBeUpdated.setCover_image_url(updatedCourse.getCover_image_url());
         courseToBeUpdated.setPreview_video_url(updatedCourse.getPreview_video_url());
         courseToBeUpdated.setPrice(updatedCourse.getPrice());
+        courseRepository.save(courseToBeUpdated);
 
     }
 
     @Override
-    public void deleteCourse(Course course) {
-
+    public void deleteCourse(UUID uuid) {
+        courseRepository.delete(getCourseInfo(uuid));
     }
 
     @Override
