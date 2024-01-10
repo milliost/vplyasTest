@@ -14,8 +14,13 @@ public class CourseController {
 
     CourseDTOService courseDTOService;
 
-    @GetMapping("/course/{id}")
-    public Course getCourseInfo(@PathVariable("id") UUID uuid) {
+    @PostMapping("/course")
+    public UUID createCourse(@ModelAttribute Course course) {
+        return courseDTOService.createCourse(course);
+    }
+
+    @GetMapping("/course/{uuid}")
+    public Course getCourseInfo(@PathVariable("uuid") UUID uuid) {
         return courseDTOService.getCourseInfo(uuid);
     }
 
@@ -25,13 +30,13 @@ public class CourseController {
     }
 
     @PatchMapping("/course/{id}")
-    public void UpdateCourse(@PathVariable UUID id, @ModelAttribute Course course) {
+    public void updateCourse(@PathVariable UUID id, @ModelAttribute Course course) {
         courseDTOService.updateCourse(id, course);
     }
 
-    @PostMapping("/course")
-    public UUID CreateCourse(@ModelAttribute Course course) {
-        return courseDTOService.createCourse(course);
+    @DeleteMapping("/course/{uuid}")
+    public void deleteCourse(@PathVariable("uuid") UUID uuid) {
+        courseDTOService.deleteCourse(uuid);
     }
 
 }

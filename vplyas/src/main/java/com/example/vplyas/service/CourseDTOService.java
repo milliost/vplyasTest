@@ -1,10 +1,8 @@
 package com.example.vplyas.service;
 
 import com.example.vplyas.entity.Course;
-import lombok.NonNull;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface CourseDTOService {
