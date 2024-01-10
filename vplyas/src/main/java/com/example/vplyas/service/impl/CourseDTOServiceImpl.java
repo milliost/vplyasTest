@@ -48,7 +48,6 @@ public class CourseDTOServiceImpl implements CourseDTOService {
         courseToBeUpdated.setPreview_video_url(updatedCourse.getPreview_video_url());
         courseToBeUpdated.setPrice(updatedCourse.getPrice());
         courseRepository.save(courseToBeUpdated);
-
     }
 
     @Override
