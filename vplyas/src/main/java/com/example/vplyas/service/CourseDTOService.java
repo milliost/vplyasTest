@@ -7,13 +7,13 @@ import java.util.UUID;
 
 public interface CourseDTOService {
 
-    Course getCourseInfo(UUID id);
+  Course getCourseInfo(UUID id);
 
-    UUID createCourse(Course course);
+  UUID createCourse(Course course);
 
-    void updateCourse(UUID id, Course updatedCourse);
+  void updateCourse(UUID id, Course updatedCourse);
 
-    void deleteCourse(UUID uuid);
+  void deleteCourse(UUID uuid);
 
-    List<Course> getCourseCatalog();
+  List<Course> getCourseCatalog();
 }

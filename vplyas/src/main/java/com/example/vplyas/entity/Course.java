@@ -1,70 +1,59 @@
 package com.example.vplyas.entity;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import com.example.vplyas.enums.Status;
+import com.example.vplyas.enums.Style;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "courses")
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Course {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private User user;
+  @ManyToOne
+  @JoinColumn
+  private User teacherId;
 
-    private Date created_at;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private Status status;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Course_statuses status;
+  @Column(nullable = false, unique = true)
+  private String title;
 
-    @Column(nullable = false, unique = true)
-    private String title;
+  @Enumerated(EnumType.STRING)
+  private Style style;
 
-    private String description;
+  @Column(nullable = false)
+  private int lessonsNumber;
 
-    @Enumerated(EnumType.STRING)
-    private Style style;
+  @Column(nullable = false)
+  private int averageLessonsDuration;
 
-    @Column(nullable = false)
-    private int lessons_number;
-
-    @Column(nullable = false)
-    private int average_lessons_duration;
-
-
-    private String cover_image_url;
-
-    private String preview_video_url;
-
-    private int price;
-
-    public enum Course_statuses {
-        DRAFT,
-        PUBLISHED,
-        ANNOUNCEMENT,
-        NOT_VISIBLE
-    }
-
-    public enum Style {
-        HIP_HOP,
-        VOGUE,
-        TANGO
-    }
-
+  private Date createdAt;
+  private String description;
+  private String coverImageUrl;
+  private String previewVideoUrl;
+  private BigDecimal price;
 }
