@@ -20,7 +20,7 @@ public class LessonDTOServiceImpl implements LessonDTOService {
 
     @Override
     public UUID createLesson(UUID courseUUID, Lesson lesson) {
-        lesson.setCourseId(courseUUID);
+        lesson.setCourse(courseDTOService.getCourseInfo(courseUUID));
         lessonRepository.save(lesson);
         return lesson.getId();
     }
