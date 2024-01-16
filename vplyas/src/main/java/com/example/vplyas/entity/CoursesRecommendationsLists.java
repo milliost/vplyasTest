@@ -14,11 +14,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "courses_RecommendationsLists")
+@Table(name = "courses_recommendations_lists")
 public class CoursesRecommendationsLists {
 
   @ManyToOne
-  @JoinColumn(name = "recommendationsLists_id")
+  @JoinColumn(name = "recommendations_lists_id")
   RecommendationsLists recommendationsLists;
 
   @ManyToOne

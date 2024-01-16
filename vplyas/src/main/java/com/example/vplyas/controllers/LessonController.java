@@ -2,14 +2,19 @@ package com.example.vplyas.controllers;
 
 import com.example.vplyas.entity.Lesson;
 import com.example.vplyas.service.LessonDTOService;
+import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.UUID;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @AllArgsConstructor
@@ -40,6 +45,4 @@ public class LessonController {
   public List<Lesson> getCourseLessons(@PathVariable("course_id") UUID course_id) {
     return lessonDTOService.getCourseLessons(course_id);
   }
-
-
 }

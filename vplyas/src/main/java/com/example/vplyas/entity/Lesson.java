@@ -41,7 +41,7 @@ public class Lesson {
   private String description;
   private Time duration;
 
-  @Column(nullable = false, unique = true, name = "order")
+  @Column(nullable = false, unique = true, name = "order_")
   private int order;
   private URL video_url;
 }
