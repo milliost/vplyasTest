@@ -4,7 +4,8 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
-/dataSources/
-/idea/dataSources.local.xml
+/.idea/dataSources/
+/.idea/dataSources.local.xml
 /target
-/.env
+.env
+docker-compose.yml
